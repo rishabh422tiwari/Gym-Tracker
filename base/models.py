@@ -12,7 +12,7 @@ class Workouts(models.Model):
     id_no = models.AutoField(primary_key=True)
     title = models.CharField(max_length=255, default="")
     created_at = models.DateField(auto_now_add=True)
-
+    
 class WorkoutPlan(models.Model):
     workout = models.ForeignKey(Workouts, on_delete=models.CASCADE)
     body_part = models.CharField(max_length=255,default="", blank=True)
