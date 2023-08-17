@@ -13,7 +13,7 @@ class Workouts(models.Model):
     title = models.CharField(max_length=255, default="")
     created_at = models.DateField(auto_now_add=True)
 
-class Workoutplan(models.Model):
+class WorkoutPlan(models.Model):
     workout = models.ForeignKey(Workouts, on_delete=models.CASCADE)
     body_part = models.CharField(max_length=255,default="", blank=True)
     muscle_name = models.CharField(max_length=255,default="", blank=True)
