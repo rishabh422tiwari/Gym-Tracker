@@ -1,1 +1,13 @@
-<h1>Hello world</h1>
+<html>
+    <body>
+        <ul>
+            {% for exc in excercise %}
+            <li>{{ exc.body_part }}</li>
+            <li>{{ exc.muscle_name }}</li>
+            <li>{{ exc.exercise_name }}</li>
+            <li>{{ exc.sets }}</li>
+            <li>{{ exc.reps }}</li>
+            {% endfor %}
+        </ul>
+    </body>
+</html>   
