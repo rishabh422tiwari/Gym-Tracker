@@ -1,6 +1,11 @@
 from rest_framework import serializers
 from django.db.models import Avg, Count, Sum
-from .models import Exercise, WorkoutList, WorkoutStructure, WorkoutLog, ProgressImage
+from .models import Exercise, WorkoutList, WorkoutStructure, WorkoutLog, ProgressImage, UserProfile
+
+class UserProfile(serializers.ModelSerializer):
+    class Meta:
+        model = UserProfile
+        fields = ['height', 'weight', 'body_type', 'phone', 'birth_date', 'user']
 
 class ExerciseSerializer(serializers.ModelSerializer):
     class Meta:

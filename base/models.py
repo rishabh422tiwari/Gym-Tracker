@@ -1,7 +1,40 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
+from django.conf import settings
+
 
 # Create your models here.
+class UserProfile(models.Model):
+    body_lean = 'Ecto'
+    body_healthy = 'Endo'
+    body_normal = 'Meso'
+
+    body_type_choices = [
+        (body_lean, 'Ectomorph'),
+        (body_healthy, 'Endomorph'),
+        (body_normal, 'Mesomorph'),
+    ]
+
+    height = models.CharField(max_length=255)
+    weight = models.IntegerField()
+    body_type = models.CharField(max_length=4, choices=body_type_choices, default=body_normal)
+    phone = models.CharField(max_length=255, unique=True)
+    birth_date = models.DateField(null=True)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'{self.user.first_name} {self.user.last_name}'
+    
+    def first_name(self):
+        return self.user.first_name
+
+    def last_name(self):
+        return self.user.last_name
+    
+    class Meta:
+        ordering = ['user__first_name', 'user__last_name']
+        
+
 class Exercise(models.Model):
     body_part = models.CharField(max_length=255)
     muscle_name = models.CharField(max_length=255)

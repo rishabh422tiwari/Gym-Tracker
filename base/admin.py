@@ -8,6 +8,17 @@ from django.http.request import HttpRequest
 from . import models
 from django.db.models import Count
 
+
+@admin.register(models.UserProfile)
+class UserProfileAdmin(admin.ModelAdmin):
+    list_display = ['height', 'weight', 'body_type', 'phone', 'birth_date', 'user']
+    list_display_links = None
+    list_editable = ['height', 'weight', 'body_type', 'phone']
+    list_per_page = 10
+    list_select_related = ['user']
+    ordering = ['user__first_name', 'user__last_name']
+    search_fields = ['first_name__istartswith', 'last_name_istartswith']
+
 @admin.register(models.Exercise)
 class ExerciseAdmin(admin.ModelAdmin):
     list_display = ['body_part', 'muscle_name', 'exercise_name', 'sets', 'reps']
@@ -55,3 +66,5 @@ class WorkoutLogAdmin(admin.ModelAdmin):
     list_editable = ['set_count', 'rep_count']
     list_filter = ['created_at']
     list_per_page = 10
+
+
