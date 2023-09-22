@@ -9,6 +9,8 @@ psycopg2-binary = "*"
 djangorestframework = "*"
 django-debug-toolbar = "*"
 pillow = "*"
+djoser = "*"
+djangorestframework-simplejwt = "*"
 
 [dev-packages]
 

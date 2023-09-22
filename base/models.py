@@ -84,6 +84,9 @@ class WorkoutLog(models.Model):
     rep_count = models.IntegerField(
         validators=[MinValueValidator(1), MaxValueValidator(50)]
     )
+    weight = models.IntegerField(
+        validators=[MinValueValidator(1), MaxValueValidator(300)]
+    )
     note = models.TextField()
 
     def __str__(self) -> str:
@@ -93,5 +96,6 @@ class WorkoutLog(models.Model):
         ordering = ['created_at']
 
 class ProgressImage(models.Model):
-    workout_log = models.ForeignKey(WorkoutLog, on_delete=models.CASCADE, related_name='images')
+    workout_no = models.ForeignKey(WorkoutList, on_delete=models.CASCADE)
+    created_at = models.DateField(auto_now_add=True)
     image = models.ImageField(upload_to='base/images', null=True)
